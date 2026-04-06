@@ -34,12 +34,23 @@ describe('TaskListItem', () => {
   });
 
   it('display task title', () => {
-    // const taskTitle = fixture.nativeElement.querySelector('h3');
-    // expect(taskTitle.textContent).toBe(MockTask.title);
+    const taskTitle = fixture.nativeElement.querySelector('label');
+    expect(taskTitle.textContent).toContain(MockTask.title);
   });
 
-  it('display task status checkbox', () => { });
-  it('display task severity icon', () => { });
-  it('display task severity icon with proper class', () => { });
-  it('change severity when click on icon button', () => { });
+  it('display task status checkbox', () => {
+    const taskStatusCheckbox = fixture.nativeElement.querySelector('input[type="checkbox"]');
+    expect(taskStatusCheckbox).toBeTruthy();
+  });
+  it('display task severity icon', () => {
+    const taskSeverityIcon = fixture.nativeElement.querySelector('button');
+    expect(taskSeverityIcon).toBeTruthy();
+  });
+  it('change severity when click on icon button', () => {
+    const spy = vi.spyOn(component.changeSeverity, 'emit');
+    const taskSeverityIcon = fixture.nativeElement.querySelector('button');
+    taskSeverityIcon.click();
+    fixture.detectChanges();
+    expect(spy).toHaveBeenCalledWith(MockTask.id, !MockTask.isImportant);
+  });
 });
