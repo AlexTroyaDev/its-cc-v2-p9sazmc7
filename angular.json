@@ -36,7 +36,9 @@
             "outputPath": "dist/demo",
             "polyfills": [],
             "scripts": [],
-            "styles": ["src/global_styles.css"],
+            "styles": [
+              "src/global_styles.css"
+            ],
             "tsConfig": "tsconfig.app.json"
           }
         },
@@ -55,7 +57,7 @@
       },
       "prefix": "app",
       "projectType": "application",
-      "root": "",
+      "root": "src",
       "schematics": {},
       "sourceRoot": "src"
     }
