@@ -53,11 +53,14 @@
             }
           },
           "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
         }
       },
       "prefix": "app",
       "projectType": "application",
-      "root": "src",
+      "root": "./",
       "schematics": {},
       "sourceRoot": "src"
     }
