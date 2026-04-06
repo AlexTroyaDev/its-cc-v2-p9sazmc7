@@ -47,10 +47,18 @@ describe('TaskListItem', () => {
     expect(taskSeverityIcon).toBeTruthy();
   });
   it('change severity when click on icon button', () => {
-    const spy = vi.spyOn(component.changeSeverity, 'emit');
+    const spy = vi.spyOn(component.updateTask, 'emit');
     const taskSeverityIcon = fixture.nativeElement.querySelector('button');
     taskSeverityIcon.click();
     fixture.detectChanges();
     expect(spy).toHaveBeenCalledWith(MockTask.id, !MockTask.isImportant);
+  });
+
+  it('change status', () => {
+    const spy = vi.spyOn(component.updateTask, 'emit');
+    const taskStatusCheckbox = fixture.nativeElement.querySelector('input[type="checkbox"]');
+    taskStatusCheckbox.click();
+    fixture.detectChanges();
+    expect(spy).toHaveBeenCalledWith(MockTask.id, !MockTask.status);
   });
 });
