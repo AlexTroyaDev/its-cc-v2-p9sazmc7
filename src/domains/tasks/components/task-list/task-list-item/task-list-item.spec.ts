@@ -23,7 +23,7 @@ describe('TaskListItem', () => {
 
     fixture = TestBed.createComponent(TaskListItem, {
       bindings: [
-        inputBinding('task', () => MockTask)
+        inputBinding('task', () => MockTask),
       ]
     });
     component = fixture.componentInstance;
@@ -48,17 +48,25 @@ describe('TaskListItem', () => {
   });
   it('change severity when click on icon button', () => {
     const spy = vi.spyOn(component.updateTask, 'emit');
+    const expected = {
+      ...MockTask,
+      isImportant: !MockTask.isImportant
+    }
     const taskSeverityIcon = fixture.nativeElement.querySelector('button');
     taskSeverityIcon.click();
     fixture.detectChanges();
-    expect(spy).toHaveBeenCalledWith(MockTask.id, !MockTask.isImportant);
+    expect(spy).toHaveBeenCalledWith(expected);
   });
 
   it('change status', () => {
     const spy = vi.spyOn(component.updateTask, 'emit');
+    const expected = {
+      ...MockTask,
+      status: TaskStatus.DONE
+    }
     const taskStatusCheckbox = fixture.nativeElement.querySelector('input[type="checkbox"]');
     taskStatusCheckbox.click();
     fixture.detectChanges();
-    expect(spy).toHaveBeenCalledWith(MockTask.id, !MockTask.status);
+    expect(spy).toHaveBeenCalledWith(expected);
   });
 });

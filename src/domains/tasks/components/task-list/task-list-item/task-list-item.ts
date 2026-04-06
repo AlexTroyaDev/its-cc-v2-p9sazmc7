@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Task, TaskStatus } from '../../../models/Task';
 import { SeverityItemButton } from '../severity-item-button/severity-item-button';
 
@@ -11,4 +11,19 @@ import { SeverityItemButton } from '../severity-item-button/severity-item-button
 export class TaskListItem {
   protected readonly TaskStatus = TaskStatus;
   protected task = input.required<Task>();
+  updateTask = output<Task>();
+
+  protected changeSeverity() {
+    this.updateTask.emit({
+      ...this.task(),
+      isImportant: !this.task().isImportant,
+    });
+  }
+
+  protected changeStatus() {
+    this.updateTask.emit({
+      ...this.task(),
+      status: this.task().status === TaskStatus.PENDING ? TaskStatus.DONE : TaskStatus.PENDING,
+    });
+  }
 }

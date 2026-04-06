@@ -1,7 +1,9 @@
 <li class="flex">
     <label [for]="'task-status-' + task().id">
         {{task().title}}
-        <app-severity-item-button [isImportant]="task().isImportant"></app-severity-item-button>
-        <input type="checkbox" [id]="'task-status-' + task().id" [checked]="task().status === TaskStatus.DONE" />
+        <app-severity-item-button [isImportant]="task().isImportant"
+            (isImportantChange)="changeSeverity()"></app-severity-item-button>
+        <input type="checkbox" [id]="'task-status-' + task().id" [checked]="task().status === TaskStatus.DONE"
+            (change)="changeStatus()" />
     </label>
 </li>
