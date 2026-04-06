@@ -1,9 +1,10 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Task, TaskStatus } from '../../../models/Task';
+import { SeverityItemButton } from '../severity-item-button/severity-item-button';
 
 @Component({
   selector: 'app-task-list-item',
-  imports: [],
+  imports: [SeverityItemButton],
   templateUrl: './task-list-item.html',
   styleUrl: './task-list-item.css',
 })

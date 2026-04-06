@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
+import { TaskSeverity } from '../../../models/Task';
 
 @Component({
   selector: 'app-severity-item-button',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './severity-item-button.css',
 })
 export class SeverityItemButton {
+  severity = input<TaskSeverity>()
 
+  protected getSeverityClass = computed(() => {
+  })
+
+  protected changeSeverity() { }
 }

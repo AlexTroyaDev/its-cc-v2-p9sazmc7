@@ -22,6 +22,10 @@ describe('SeverityItemButton', () => {
   });
 
   it('display severity icon', () => {
+    const severityIcon = fixture.nativeElement.querySelector('img');
+    expect(severityIcon).toBeTruthy();
+    expect(severityIcon.src).toContain('/icons/severity.svg');
+    expect(severityIcon.getAttribute('aria-label')).toBe('Change severity');
   });
   it('change severity when is clicked', () => {
   });
