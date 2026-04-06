@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SeverityItemButton } from './severity-item-button';
+import { inputBinding, outputBinding } from '@angular/core';
 
 describe('SeverityItemButton', () => {
   let component: SeverityItemButton;
@@ -12,7 +13,11 @@ describe('SeverityItemButton', () => {
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(SeverityItemButton);
+    fixture = TestBed.createComponent(SeverityItemButton, {
+      bindings: [
+        inputBinding('isImportant', () => true),
+      ]
+    });
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
@@ -31,10 +36,23 @@ describe('SeverityItemButton', () => {
     const spy = vi.spyOn(component.isImportantChange, 'emit');
     const severityIcon = fixture.nativeElement.querySelector('button');
     severityIcon.click();
-    expect(spy).toHaveBeenCalledWith(true);
+    expect(spy).toHaveBeenCalledWith(false);
   });
-  it('display severity icon with proper class', () => {
+
+  it('display severity icon with important class', () => {
     const severityIcon = fixture.nativeElement.querySelector('img');
     expect(severityIcon.classList).toContain('important');
+  });
+
+  it('display severity icon with not-important class', async () => {
+    fixture = TestBed.createComponent(SeverityItemButton, {
+      bindings: [
+        inputBinding('isImportant', () => false),
+      ]
+    });
+    component = fixture.componentInstance;
+    await fixture.whenStable();
+    const severityIcon = fixture.nativeElement.querySelector('img');
+    expect(severityIcon.classList).toContain('not-important');
   });
 });

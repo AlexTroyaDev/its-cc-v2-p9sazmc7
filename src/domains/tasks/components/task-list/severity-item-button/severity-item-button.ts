@@ -11,6 +11,7 @@ export class SeverityItemButton {
   isImportantChange = output<boolean>()
 
   protected getSeverityClass = computed(() => {
+    return this.isImportant() ? 'important' : 'not-important';
   })
 
   protected onChangeSeverity() {
