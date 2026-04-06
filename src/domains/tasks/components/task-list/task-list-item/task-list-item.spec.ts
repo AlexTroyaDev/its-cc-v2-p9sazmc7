@@ -1,14 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskListItem } from './task-list-item';
-import { Task, TaskSeverity, TaskStatus } from '../../../models/Task';
+import { Task, TaskStatus } from '../../../models/Task';
 import { inputBinding } from '@angular/core';
 
-const MockTask = {
+const MockTask: Task = {
   id: '1',
   title: 'Task 1',
   status: TaskStatus.PENDING,
-  severity: TaskSeverity.LOW,
+  isImportant: false,
 }
 
 describe('TaskListItem', () => {

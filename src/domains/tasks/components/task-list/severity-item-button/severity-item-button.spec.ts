@@ -28,7 +28,13 @@ describe('SeverityItemButton', () => {
     expect(severityIcon.getAttribute('aria-label')).toBe('Change severity');
   });
   it('change severity when is clicked', () => {
+    const spy = vi.spyOn(component.isImportantChange, 'emit');
+    const severityIcon = fixture.nativeElement.querySelector('button');
+    severityIcon.click();
+    expect(spy).toHaveBeenCalledWith(true);
   });
   it('display severity icon with proper class', () => {
+    const severityIcon = fixture.nativeElement.querySelector('img');
+    expect(severityIcon.classList).toContain('important');
   });
 });

@@ -1,5 +1,4 @@
-import { Component, computed, input } from '@angular/core';
-import { TaskSeverity } from '../../../models/Task';
+import { Component, computed, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-severity-item-button',
@@ -8,10 +7,14 @@ import { TaskSeverity } from '../../../models/Task';
   styleUrl: './severity-item-button.css',
 })
 export class SeverityItemButton {
-  severity = input<TaskSeverity>()
+  isImportant = input<boolean>()
+  isImportantChange = output<boolean>()
 
   protected getSeverityClass = computed(() => {
   })
 
-  protected changeSeverity() { }
+  protected onChangeSeverity() {
+    this.isImportantChange.emit(!this.isImportant())
+  }
+
 }
