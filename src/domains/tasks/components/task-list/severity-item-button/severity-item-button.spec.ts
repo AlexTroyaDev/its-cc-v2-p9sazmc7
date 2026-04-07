@@ -27,11 +27,15 @@ describe('SeverityItemButton', () => {
   });
 
   it('display severity icon', () => {
-    const severityIcon = fixture.nativeElement.querySelector('img');
+    const severityIcon = fixture.nativeElement.querySelector('svg');
     expect(severityIcon).toBeTruthy();
-    expect(severityIcon.src).toContain('/icons/severity.svg');
+  });
+
+  it('display severity icon with aria-label', () => {
+    const severityIcon = fixture.nativeElement.querySelector('button');
     expect(severityIcon.getAttribute('aria-label')).toBe('Change severity');
   });
+
   it('change severity when is clicked', () => {
     const spy = vi.spyOn(component.isImportantChange, 'emit');
     const severityIcon = fixture.nativeElement.querySelector('button');
@@ -40,7 +44,7 @@ describe('SeverityItemButton', () => {
   });
 
   it('display severity icon with important class', () => {
-    const severityIcon = fixture.nativeElement.querySelector('img');
+    const severityIcon = fixture.nativeElement.querySelector('svg');
     expect(severityIcon.classList).toContain('important');
   });
 
@@ -52,7 +56,7 @@ describe('SeverityItemButton', () => {
     });
     component = fixture.componentInstance;
     await fixture.whenStable();
-    const severityIcon = fixture.nativeElement.querySelector('img');
+    const severityIcon = fixture.nativeElement.querySelector('svg');
     expect(severityIcon.classList).toContain('not-important');
   });
 });

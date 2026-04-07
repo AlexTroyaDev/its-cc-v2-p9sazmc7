@@ -1,0 +1,5 @@
+<form class="p-4 flex flex-col">
+    <input type="text" placeholder="Task title" [formField]="createTaskForm.title" />
+    <label><input type="checkbox" [formField]="createTaskForm.isImportant" /> Is important?</label>
+    <button type="button" (click)="addTask()" class="bg-blue-500 text-white p-2 rounded">Add Task</button>
+</form>

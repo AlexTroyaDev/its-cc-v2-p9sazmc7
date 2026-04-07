@@ -2,19 +2,21 @@ import { Component, signal } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { TaskList } from './domains/tasks/components/task-list/task-list';
 import { Task, TaskStatus } from './domains/tasks/models/Task';
+import { AddTask } from './domains/tasks/components/add-task/add-task';
 
 @Component({
   selector: 'app-root',
-  imports: [TaskList],
+  imports: [TaskList, AddTask],
   template: `
   <div class="w-full p-2 flex flex-col items-center">
   <h1 class="text-3xl font-bold underline mb-16">Code Challenge</h1>
-  <app-task-list [tasks]="tasks" (updateTasksLists)="updateTasksLists($event)"></app-task-list>
+  <app-task-list [tasks]="tasks()" (updateTasksLists)="updateTasksLists($event)"></app-task-list>
+  <app-add-task (newTask)="addTask($event)"></app-add-task>
 </div>
 `,
 })
 export class App {
-  protected tasks = [
+  protected tasks = signal<Task[]>([
     {
       id: '1',
       title: 'Task 1',
@@ -39,12 +41,17 @@ export class App {
       status: TaskStatus.DONE,
       isImportant: true,
     }
-  ]
+  ])
 
   updateTasksLists(tasks: Task[]) {
-    this.tasks = tasks;
+    this.tasks.set(tasks);
     // left here intentionally to show the tasks list update
     console.log('tasks', this.tasks);
+  }
+
+  addTask(task: Task) {
+    console.log('task', task);
+    this.tasks.update((tasks) => [...tasks, task]);
   }
 
 }

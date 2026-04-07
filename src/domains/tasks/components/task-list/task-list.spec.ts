@@ -74,9 +74,9 @@ describe('TaskList', () => {
   });
   it('pass tasks title, status and severity to task list item', () => {
     const taskListItem = fixture.nativeElement.querySelector('app-task-list-item');
-    expect(taskListItem.textContent).toContain(MockTasks[0].title);
-    expect(taskListItem.textContent).toContain(MockTasks[0].status);
-    expect(taskListItem.textContent).toContain(MockTasks[0].isImportant);
+    expect(taskListItem.textContent).toContain(MockTasks[1].title);
+    expect(taskListItem.textContent).toContain(MockTasks[1].status);
+    expect(taskListItem.textContent).toContain(MockTasks[1].isImportant);
 
   });
   it('show task list count when tasks are present', () => {

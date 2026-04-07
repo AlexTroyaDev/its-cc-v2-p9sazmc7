@@ -22,9 +22,9 @@ describe('AddTask', () => {
   });
 
   it('should emit add task event when form is submitted', () => {
-    const addTaskSpy = spyOn(component.addTask, 'emit');
-    const form = fixture.nativeElement.querySelector('form');
-    form.dispatchEvent(new Event('submit'));
+    const addTaskSpy = vi.spyOn(component.newTask, 'emit');
+    const addButton = fixture.nativeElement.querySelector('button');
+    addButton.click();
     expect(addTaskSpy).toHaveBeenCalled();
   });
 });
