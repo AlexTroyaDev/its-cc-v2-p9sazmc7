@@ -2,7 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskList } from './task-list';
 import { Task, TaskStatus } from '../../models/Task';
-import { inputBinding } from '@angular/core';
+import { Component, input, inputBinding, NO_ERRORS_SCHEMA } from '@angular/core';
+
+@Component({ selector: 'app-task-list-item', template: '<div>{{task().title}} - {{task().status}} - {{task().isImportant}}</div>' })
+class TaskListItemStub {
+  task = input.required<Task>();
+}
 
 const MockTasks: Task[] = [
   {
@@ -28,6 +33,12 @@ describe('TaskList', () => {
     await TestBed.configureTestingModule({
       imports: [TaskList]
     })
+      .overrideComponent(TaskList, {
+        set: {
+          imports: [TaskListItemStub],
+          schemas: [NO_ERRORS_SCHEMA],
+        }
+      })
       .compileComponents();
 
     fixture = TestBed.createComponent(TaskList, {
@@ -57,10 +68,26 @@ describe('TaskList', () => {
     expect(taskListEmptyMessage.textContent).toContain('No tasks found');
   });
   it('display task list when tasks are present', () => {
-    const taskList = fixture.nativeElement.querySelector('app-task-list-item');
-    expect(taskList).toBeTruthy();
+    const taskListItem = fixture.nativeElement.querySelector('app-task-list-item');
+    expect(taskListItem).toBeTruthy();
   });
-  it('display tasks title, status and severity', () => { });
-  it('show task list count when tasks are present', () => { });
+  it('pass tasks title, status and severity to task list item', () => {
+    const taskListItem = fixture.nativeElement.querySelector('app-task-list-item');
+    expect(taskListItem.textContent).toContain(MockTasks[0].title);
+    expect(taskListItem.textContent).toContain(MockTasks[0].status);
+    expect(taskListItem.textContent).toContain(MockTasks[0].isImportant);
+
+  });
+  it('show task list count when tasks are present', () => {
+    const taskListCount = fixture.nativeElement.querySelector('.counter');
+    expect(taskListCount).toBeTruthy();
+    expect(taskListCount.textContent).toContain(MockTasks.length);
+  });
+
+  it('update task when task list item emit updateTask event', () => {
+    const taskListItem = fixture.nativeElement.querySelector('app-task-list-item');
+    taskListItem.dispatchEvent(new CustomEvent('updateTask', { detail: MockTasks[0] }));
+    expect(component.tasks()).toContain(MockTasks[0]);
+  });
 
 });

@@ -7,6 +7,7 @@ import { SeverityItemButton } from '../severity-item-button/severity-item-button
   imports: [SeverityItemButton],
   templateUrl: './task-list-item.html',
   styleUrl: './task-list-item.css',
+  standalone: true,
 })
 export class TaskListItem {
   protected readonly TaskStatus = TaskStatus;

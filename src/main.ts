@@ -1,17 +1,34 @@
 import { Component, signal } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { TodoListComponent } from './todo-list/todo-list';
+import { TaskList } from './domains/tasks/components/task-list/task-list';
+import { TaskStatus } from './domains/tasks/models/Task';
 
 @Component({
   selector: 'app-root',
-  imports: [TodoListComponent],
+  imports: [TaskList],
   template: `
   <div class="w-full p-2 flex flex-col items-center">
   <h1 class="text-3xl font-bold underline mb-16">Code Challenge</h1>
-  <app-todo-list></app-todo-list>
+  <app-task-list [tasks]="tasks"></app-task-list>
 </div>
 `,
 })
-export class App {}
+export class App {
+  protected tasks = [
+    {
+      id: '1',
+      title: 'Task 1',
+      status: TaskStatus.PENDING,
+      isImportant: false,
+    },
+    {
+      id: '2',
+      title: 'Task 2',
+      status: TaskStatus.DONE,
+      isImportant: true,
+    }
+  ]
+
+}
 
 bootstrapApplication(App);
