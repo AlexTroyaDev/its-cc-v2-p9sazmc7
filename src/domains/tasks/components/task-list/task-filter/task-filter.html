@@ -1,1 +1,5 @@
-<p>task-filter works!</p>
+<div class="flex">
+    <button (click)="filterTasks('all')">All</button>
+    <button (click)="filterTasks(TaskStatus.PENDING)">{{ TaskStatus.PENDING }}</button>
+    <button (click)="filterTasks(TaskStatus.DONE)">{{ TaskStatus.DONE }}</button>
+</div>

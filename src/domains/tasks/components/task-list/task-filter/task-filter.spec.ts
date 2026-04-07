@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskFilter } from './task-filter';
+import { TaskStatus } from '../../../models/Task';
 
 describe('TaskFilter', () => {
   let component: TaskFilter;
@@ -25,8 +26,8 @@ describe('TaskFilter', () => {
     const filteringOptions = fixture.nativeElement.querySelectorAll('button');
     expect(filteringOptions.length).toBe(3);
     expect(filteringOptions[0].textContent).toBe('All');
-    expect(filteringOptions[1].textContent).toBe('Pending');
-    expect(filteringOptions[2].textContent).toBe('Completed');
+    expect(filteringOptions[1].textContent).toBe(TaskStatus.PENDING);
+    expect(filteringOptions[2].textContent).toBe(TaskStatus.DONE);
   });
 
   it('emit filter change event when a filter option is clicked', () => {
