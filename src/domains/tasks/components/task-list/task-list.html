@@ -1,5 +1,6 @@
-@if (taskList().length === 0) {
+@if (tasks().length === 0) {
 <p>No tasks found</p>
 } @else {
 <p>Task list</p>
+<app-task-list-item *ngFor="let task of tasks()" [task]="task"></app-task-list-item>
 }

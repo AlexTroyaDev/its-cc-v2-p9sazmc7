@@ -10,7 +10,7 @@ import { SeverityItemButton } from '../severity-item-button/severity-item-button
 })
 export class TaskListItem {
   protected readonly TaskStatus = TaskStatus;
-  protected task = input.required<Task>();
+  task = input.required<Task>();
   updateTask = output<Task>();
 
   protected changeSeverity() {
