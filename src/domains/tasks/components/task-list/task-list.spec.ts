@@ -4,6 +4,7 @@ import { TaskList } from './task-list';
 import { Task, TaskStatus } from '../../models/Task';
 import { Component, input, inputBinding, NO_ERRORS_SCHEMA } from '@angular/core';
 
+// Stub the component to check easily the inputs.
 @Component({ selector: 'app-task-list-item', template: '<div>{{task().title}} - {{task().status}} - {{task().isImportant}}</div>' })
 class TaskListItemStub {
   task = input.required<Task>();

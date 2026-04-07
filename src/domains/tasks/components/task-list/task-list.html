@@ -7,7 +7,7 @@
 
     } @else {
     <ul class="flex flex-col justify-center gap-4 p-2" id="todoList">
-        @for (task of tasks(); track task.id) {
+        @for (task of orderedTasks(); track task.id) {
         <app-task-list-item [task]="task" (updateTask)="updateTask($event)"></app-task-list-item>
         }
     </ul>

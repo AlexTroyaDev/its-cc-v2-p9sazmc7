@@ -26,6 +26,18 @@ export class App {
       title: 'Task 2',
       status: TaskStatus.DONE,
       isImportant: true,
+    },
+    {
+      id: '3',
+      title: 'Task 3',
+      status: TaskStatus.PENDING,
+      isImportant: false,
+    },
+    {
+      id: '4',
+      title: 'Task 4',
+      status: TaskStatus.DONE,
+      isImportant: true,
     }
   ]
 
