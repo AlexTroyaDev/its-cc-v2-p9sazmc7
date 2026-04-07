@@ -27,5 +27,12 @@ describe('TaskFilter', () => {
     expect(filteringOptions[0].textContent).toBe('All');
     expect(filteringOptions[1].textContent).toBe('Pending');
     expect(filteringOptions[2].textContent).toBe('Completed');
-  })
+  });
+
+  it('emit filter change event when a filter option is clicked', () => {
+    const filterChangeSpy = vi.spyOn(component.filterChange, 'emit');
+    const filteringOptions = fixture.nativeElement.querySelectorAll('button');
+    filteringOptions[0].click();
+    expect(filterChangeSpy).toHaveBeenCalledWith('all');
+  });
 });
