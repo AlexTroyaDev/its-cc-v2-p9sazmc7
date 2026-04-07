@@ -25,7 +25,7 @@ describe('TaskFilter', () => {
   it('display filtering options', () => {
     const filteringOptions = fixture.nativeElement.querySelectorAll('button');
     expect(filteringOptions.length).toBe(3);
-    expect(filteringOptions[0].textContent).toBe('All');
+    expect(filteringOptions[0].textContent).toBe('all');
     expect(filteringOptions[1].textContent).toBe(TaskStatus.PENDING);
     expect(filteringOptions[2].textContent).toBe(TaskStatus.DONE);
   });
@@ -35,5 +35,9 @@ describe('TaskFilter', () => {
     const filteringOptions = fixture.nativeElement.querySelectorAll('button');
     filteringOptions[0].click();
     expect(filterChangeSpy).toHaveBeenCalledWith('all');
+    filteringOptions[1].click();
+    expect(filterChangeSpy).toHaveBeenCalledWith(TaskStatus.PENDING);
+    filteringOptions[2].click();
+    expect(filterChangeSpy).toHaveBeenCalledWith(TaskStatus.DONE);
   });
 });

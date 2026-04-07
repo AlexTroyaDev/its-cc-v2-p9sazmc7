@@ -1,4 +1,4 @@
-<div class="p-4 flex flex-col items-center border bg-white w-full rounded">
+<div class="p-4 flex flex-col items-center border bg-white w-full rounded mb-2">
     <h2 class="counter mb-4">{{ tasks().length }} things I have to do.</h2>
 
     @if (tasks().length === 0) {
@@ -6,9 +6,12 @@
     <p>No tasks found</p>
 
     } @else {
+    <app-task-filter (filterChange)="setFilter($event)"></app-task-filter>
     <ul class="flex flex-col justify-center gap-4 p-2" id="todoList">
         @for (task of orderedTasks(); track task.id) {
+        @if (task.status === filter() || filter() === 'all') {
         <app-task-list-item [task]="task" (updateTask)="updateTask($event)"></app-task-list-item>
+        }
         }
     </ul>
     }

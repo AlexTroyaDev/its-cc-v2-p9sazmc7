@@ -1,5 +1,9 @@
-<div class="flex">
-    <button (click)="filterTasks('all')">All</button>
-    <button (click)="filterTasks(TaskStatus.PENDING)">{{ TaskStatus.PENDING }}</button>
-    <button (click)="filterTasks(TaskStatus.DONE)">{{ TaskStatus.DONE }}</button>
+<div class="flex gap-4 mb-2">
+    <button (click)="filterTasks('all')"
+        class="bg-blue-500 hover:bg-blue-600 text-white font-bold rounded px-2">all</button>
+    <button (click)="filterTasks(TaskStatus.PENDING)"
+        class="bg-blue-500 hover:bg-blue-600 text-white font-bold rounded px-2">{{ TaskStatus.PENDING }}</button>
+    <button (click)="filterTasks(TaskStatus.DONE)"
+        class="bg-blue-500 hover:bg-blue-600 text-white font-bold rounded px-2">{{
+        TaskStatus.DONE }}</button>
 </div>
