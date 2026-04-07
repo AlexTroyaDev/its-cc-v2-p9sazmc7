@@ -91,4 +91,10 @@ describe('TaskList', () => {
     expect(component.tasks()).toContain(MockTasks[0]);
   });
 
+  it('filter tasks by status', () => {
+    const taskListItem = fixture.nativeElement.querySelector('app-task-list-item');
+    taskListItem.dispatchEvent(new CustomEvent('updateTask', { detail: MockTasks[0] }));
+    expect(component.tasks()).toContain(MockTasks[0]);
+  });
+
 });
