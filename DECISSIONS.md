@@ -35,3 +35,4 @@
 - Tried to keep the solid principles. I would have liked to connnect to the proposed API but due lack of time, was not possible. But in a real scenario, I would create a service using HttpClient and HttpResource new api, to handle the API calls and another service to handle the app status and remove the store from the component.
 
 - Didnt pay much attention to the styles. In case of have more time, I would followed best practices and DRY principles.
+- Also discard to invest too much time in accessibility. I know is quite important in your bussines real scenario.
