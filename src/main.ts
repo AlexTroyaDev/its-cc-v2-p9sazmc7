@@ -50,7 +50,6 @@ export class App {
   }
 
   addTask(task: Task) {
-    console.log('task', task);
     this.tasks.update((tasks) => [...tasks, task]);
   }
 
